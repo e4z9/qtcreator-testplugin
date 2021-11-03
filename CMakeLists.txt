@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Remove when sharing with others.
-list(APPEND CMAKE_PREFIX_PATH "/Users/Shared/qt/creator/4.15/5.15/")
+list(APPEND CMAKE_PREFIX_PATH "/Users/Shared/qt/creator/6.0/build/6.2")
 
-project(QtcreatorTestplugin)
+project(QtCreatorTestPlugin)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -14,7 +14,7 @@ find_package(QtCreator COMPONENTS Core REQUIRED)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 set(QtX Qt${QT_VERSION_MAJOR})
 
-add_qtc_plugin(QtcreatorTestplugin
+add_qtc_plugin(QtCreatorTestPlugin
   PLUGIN_DEPENDS
     QtCreator::Core
   DEPENDS

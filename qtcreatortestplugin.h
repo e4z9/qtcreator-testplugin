@@ -4,17 +4,17 @@
 
 #include <extensionsystem/iplugin.h>
 
-namespace QtcreatorTestplugin {
+namespace QtCreatorTestPlugin {
 namespace Internal {
 
-class QtcreatorTestpluginPlugin : public ExtensionSystem::IPlugin
+class QtCreatorTestPluginPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "QtcreatorTestplugin.json")
+        Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "QtCreatorTestPlugin.json")
 
-public:
-    QtcreatorTestpluginPlugin();
-    ~QtcreatorTestpluginPlugin() override;
+        public:
+                 QtCreatorTestPluginPlugin();
+    ~QtCreatorTestPluginPlugin() override;
 
     bool initialize(const QStringList &arguments, QString *errorString) override;
     void extensionsInitialized() override;
@@ -25,5 +25,5 @@ private:
 };
 
 } // namespace Internal
-} // namespace QtcreatorTestplugin
+} // namespace QtCreatorTestPlugin
 

@@ -25,12 +25,12 @@
 
 #pragma once
 
-namespace QtcreatorTestplugin {
+namespace QtCreatorTestPlugin {
 namespace Constants {
 
-const char ACTION_ID[] = "QtcreatorTestplugin.Action";
-const char MENU_ID[] = "QtcreatorTestplugin.Menu";
+const char ACTION_ID[] = "QtCreatorTestPlugin.Action";
+const char MENU_ID[] = "QtCreatorTestPlugin.Menu";
 
 } // namespace Constants
-} // namespace QtcreatorTestplugin
+} // namespace QtCreatorTestPlugin
 

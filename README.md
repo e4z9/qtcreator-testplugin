@@ -1,4 +1,4 @@
-# QtcreatorTestplugin
+# QtCreatorTestPlugin
 
 ## How to Build
 

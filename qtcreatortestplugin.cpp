@@ -13,21 +13,21 @@
 #include <QMainWindow>
 #include <QMenu>
 
-namespace QtcreatorTestplugin {
+namespace QtCreatorTestPlugin {
 namespace Internal {
 
-QtcreatorTestpluginPlugin::QtcreatorTestpluginPlugin()
+QtCreatorTestPluginPlugin::QtCreatorTestPluginPlugin()
 {
     // Create your members
 }
 
-QtcreatorTestpluginPlugin::~QtcreatorTestpluginPlugin()
+QtCreatorTestPluginPlugin::~QtCreatorTestPluginPlugin()
 {
     // Unregister objects from the plugin manager's object pool
     // Delete members
 }
 
-bool QtcreatorTestpluginPlugin::initialize(const QStringList &arguments, QString *errorString)
+bool QtCreatorTestPluginPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
     // Register objects in the plugin manager's object pool
     // Load settings
@@ -39,28 +39,28 @@ bool QtcreatorTestpluginPlugin::initialize(const QStringList &arguments, QString
     Q_UNUSED(arguments)
     Q_UNUSED(errorString)
 
-    auto action = new QAction(tr("QtcreatorTestplugin Action"), this);
+    auto action = new QAction(tr("QtCreatorTestPlugin Action"), this);
     Core::Command *cmd = Core::ActionManager::registerAction(action, Constants::ACTION_ID,
                                                              Core::Context(Core::Constants::C_GLOBAL));
     cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Alt+Meta+A")));
-    connect(action, &QAction::triggered, this, &QtcreatorTestpluginPlugin::triggerAction);
+    connect(action, &QAction::triggered, this, &QtCreatorTestPluginPlugin::triggerAction);
 
     Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
-    menu->menu()->setTitle(tr("QtcreatorTestplugin"));
+    menu->menu()->setTitle(tr("QtCreatorTestPlugin"));
     menu->addAction(cmd);
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
     return true;
 }
 
-void QtcreatorTestpluginPlugin::extensionsInitialized()
+void QtCreatorTestPluginPlugin::extensionsInitialized()
 {
     // Retrieve objects from the plugin manager's object pool
     // In the extensionsInitialized function, a plugin can be sure that all
     // plugins that depend on it are completely initialized.
 }
 
-ExtensionSystem::IPlugin::ShutdownFlag QtcreatorTestpluginPlugin::aboutToShutdown()
+ExtensionSystem::IPlugin::ShutdownFlag QtCreatorTestPluginPlugin::aboutToShutdown()
 {
     // Save settings
     // Disconnect from signals that are not needed during shutdown
@@ -68,12 +68,12 @@ ExtensionSystem::IPlugin::ShutdownFlag QtcreatorTestpluginPlugin::aboutToShutdow
     return SynchronousShutdown;
 }
 
-void QtcreatorTestpluginPlugin::triggerAction()
+void QtCreatorTestPluginPlugin::triggerAction()
 {
     QMessageBox::information(Core::ICore::mainWindow(),
                              tr("Action Triggered"),
-                             tr("This is an action from QtcreatorTestplugin."));
+                             tr("This is an action from QtCreatorTestPlugin."));
 }
 
 } // namespace Internal
-} // namespace QtcreatorTestplugin
+} // namespace QtCreatorTestPlugin
