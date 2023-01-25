@@ -14,6 +14,18 @@ find_package(QtCreator COMPONENTS Core REQUIRED)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 set(QtX Qt${QT_VERSION_MAJOR})
 
+find_package(${QtX} COMPONENTS Test QUIET)
+option(WITH_TESTS "Builds with tests" NO)
+if (WITH_TESTS)
+  enable_testing() # enable ctest for the auto tests
+
+  set(IMPLICIT_DEPENDS Qt::Test)
+
+  add_qtc_test(tst_mytest
+    SOURCES tests/auto/tst_mytest.cpp
+  )
+endif()
+
 add_qtc_plugin(QtCreatorTestPlugin
   PLUGIN_DEPENDS
     QtCreator::Core

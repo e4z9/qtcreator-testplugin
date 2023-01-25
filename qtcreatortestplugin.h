@@ -4,6 +4,10 @@
 
 #include <extensionsystem/iplugin.h>
 
+#if WITH_TESTS
+#include <QtTest>
+#endif
+
 namespace QtCreatorTestPlugin {
 namespace Internal {
 
@@ -22,8 +26,12 @@ class QtCreatorTestPluginPlugin : public ExtensionSystem::IPlugin
 
 private:
     void triggerAction();
+
+#if WITH_TESTS
+private slots:
+    void testFoo() { QVERIFY(false); };
+#endif
 };
 
 } // namespace Internal
 } // namespace QtCreatorTestPlugin
-
