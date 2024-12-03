@@ -1,6 +1,6 @@
 {
     "name": "QtcreatorTestplugin",
-    "vendor": "MeinUnternehmen",
+    "vendor": "MyCompany",
     "tags": [
         "Some tag",
         "Other tag"
@@ -45,7 +45,7 @@
             "image_label": "Example 1."
         }
     ],
-    "copyright": "(C) MeinUnternehmen",
+    "copyright": "(C) MyCompany",
     "download_history": {
         "download_count": 0
     },
