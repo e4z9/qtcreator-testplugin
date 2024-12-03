@@ -1,79 +1,92 @@
-#include "qtcreatortestplugin.h"
-#include "qtcreatortestpluginconstants.h"
+// Copyright (C) 2024 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0
 
-#include <coreplugin/icore.h>
-#include <coreplugin/icontext.h>
+#include "qtcreatortestpluginconstants.h"
+#include "qtcreatortestplugintr.h"
+
+#include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/command.h>
-#include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/coreconstants.h>
+#include <coreplugin/icontext.h>
+#include <coreplugin/icore.h>
+
+#include <extensionsystem/iplugin.h>
 
 #include <QAction>
-#include <QMessageBox>
 #include <QMainWindow>
 #include <QMenu>
+#include <QMessageBox>
 
-namespace QtCreatorTestPlugin {
-namespace Internal {
+namespace QtcreatorTestplugin::Internal {
 
-QtCreatorTestPluginPlugin::QtCreatorTestPluginPlugin()
+class QtcreatorTestpluginPlugin final : public ExtensionSystem::IPlugin
 {
-    // Create your members
-}
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "QtcreatorTestplugin.json")
 
-QtCreatorTestPluginPlugin::~QtCreatorTestPluginPlugin()
-{
-    // Unregister objects from the plugin manager's object pool
-    // Delete members
-}
+public:
+    QtcreatorTestpluginPlugin() = default;
 
-bool QtCreatorTestPluginPlugin::initialize(const QStringList &arguments, QString *errorString)
-{
-    // Register objects in the plugin manager's object pool
-    // Load settings
-    // Add actions to menus
-    // Connect to other plugins' signals
-    // In the initialize function, a plugin can be sure that the plugins it
-    // depends on have initialized their members.
+    ~QtcreatorTestpluginPlugin() final
+    {
+        // Unregister objects from the plugin manager's object pool
+        // Other cleanup, if needed.
+    }
 
-    Q_UNUSED(arguments)
-    Q_UNUSED(errorString)
+    void initialize() final
+    {
+        // Set up this plugin's factories, if needed.
+        // Register objects in the plugin manager's object pool, if needed. (rare)
+        // Load settings
+        // Add actions to menus
+        // Connect to other plugins' signals
+        // In the initialize function, a plugin can be sure that the plugins it
+        // depends on have passed their initialize() phase.
 
-    auto action = new QAction(tr("QtCreatorTestPlugin Action"), this);
-    Core::Command *cmd = Core::ActionManager::registerAction(action, Constants::ACTION_ID,
-                                                             Core::Context(Core::Constants::C_GLOBAL));
-    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Alt+Meta+A")));
-    connect(action, &QAction::triggered, this, &QtCreatorTestPluginPlugin::triggerAction);
+        // If you need access to command line arguments or to report errors, use the
+        //    bool IPlugin::initialize(const QStringList &arguments, QString *errorString)
+        // overload.
 
-    Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
-    menu->menu()->setTitle(tr("QtCreatorTestPlugin"));
-    menu->addAction(cmd);
-    Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
+        auto action = new QAction(Tr::tr("QtcreatorTestplugin Action"), this);
+        Core::Command *cmd = Core::ActionManager::registerAction(action,
+                                                                 Constants::ACTION_ID,
+                                                                 Core::Context(
+                                                                     Core::Constants::C_GLOBAL));
+        cmd->setDefaultKeySequence(QKeySequence(Tr::tr("Ctrl+Alt+Meta+A")));
+        connect(action, &QAction::triggered, this, &QtcreatorTestpluginPlugin::triggerAction);
 
-    return true;
-}
+        Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
+        menu->menu()->setTitle(Tr::tr("QtcreatorTestplugin"));
+        menu->addAction(cmd);
+        Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
+    }
 
-void QtCreatorTestPluginPlugin::extensionsInitialized()
-{
-    // Retrieve objects from the plugin manager's object pool
-    // In the extensionsInitialized function, a plugin can be sure that all
-    // plugins that depend on it are completely initialized.
-}
+    void extensionsInitialized() final
+    {
+        // Retrieve objects from the plugin manager's object pool, if needed. (rare)
+        // In the extensionsInitialized function, a plugin can be sure that all
+        // plugins that depend on it have passed their initialize() and
+        // extensionsInitialized() phase.
+    }
 
-ExtensionSystem::IPlugin::ShutdownFlag QtCreatorTestPluginPlugin::aboutToShutdown()
-{
-    // Save settings
-    // Disconnect from signals that are not needed during shutdown
-    // Hide UI (if you add UI that is not in the main window directly)
-    return SynchronousShutdown;
-}
+    ShutdownFlag aboutToShutdown() final
+    {
+        // Save settings
+        // Disconnect from signals that are not needed during shutdown
+        // Hide UI (if you add UI that is not in the main window directly)
+        return SynchronousShutdown;
+    }
 
-void QtCreatorTestPluginPlugin::triggerAction()
-{
-    QMessageBox::information(Core::ICore::mainWindow(),
-                             tr("Action Triggered"),
-                             tr("This is an action from QtCreatorTestPlugin."));
-}
+private:
+    void triggerAction()
+    {
+        QMessageBox::information(Core::ICore::mainWindow(),
+                                 Tr::tr("Action Triggered"),
+                                 Tr::tr("This is an action from QtcreatorTestplugin."));
+    }
+};
 
-} // namespace Internal
-} // namespace QtCreatorTestPlugin
+} // namespace QtcreatorTestplugin::Internal
+
+#include <qtcreatortestplugin.moc>

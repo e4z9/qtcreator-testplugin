@@ -1,0 +1,14 @@
+{
+    "Id" : "qtcreatortestplugin",
+    "Name" : "QtcreatorTestplugin",
+    "Version" : "0.0.1",
+    "CompatVersion" : "0.0.1",
+    "Vendor" : "MeinUnternehmen",
+    "VendorId" : "meinunternehmen",
+    "Copyright" : "(C) MeinUnternehmen",
+    "License" : "Fügen Sie hier kurze Lizenzinformationen ein",
+    "Description" : "Fügen Sie hier eine kurze Beschreibung Ihres Plugins ein",
+    "Url" : "https://www.meinunternehmen.com",
+    "DocumentationUrl" : "",
+    ${IDE_PLUGIN_DEPENDENCIES}
+}
