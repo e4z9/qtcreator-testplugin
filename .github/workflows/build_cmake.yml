@@ -147,7 +147,7 @@ jobs:
 
         execute_process(COMMAND ${qt_dir}/bin/qmake -query)
     - name: Download Qt Creator
-      uses: qt-creator/install-dev-package@v1.5-pre
+      uses: qt-creator/install-dev-package@v1.5
       with:
         version: ${{ env.QT_CREATOR_VERSION }}
         unzip-to: 'qtcreator'
