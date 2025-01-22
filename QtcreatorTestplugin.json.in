@@ -3,6 +3,7 @@
     "Name" : "QtcreatorTestplugin",
     "Version" : "0.0.1",
     "CompatVersion" : "0.0.1",
+    "SoftLoadable": true,
     "Vendor" : "MeinUnternehmen",
     "VendorId" : "meinunternehmen",
     "Copyright" : "(C) MeinUnternehmen",
